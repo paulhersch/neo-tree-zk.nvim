@@ -48,7 +48,9 @@ local follow_internal = function()
 end
 
 M.default_config = {
-	follow_current_file = true,
+	follow_current_file = {
+        enabled = true
+    },
 	window = {
 		mappings = {
 			["n"] = "change_query",
@@ -127,7 +129,7 @@ M.setup = function(config, global_config)
 	end
 
 	-- Configure event handler for follow_current_file option
-	if config.follow_current_file then
+	if config.follow_current_file.enabled then
 		manager.subscribe(M.name, {
 			event = events.VIM_BUFFER_ENTER,
 			handler = M.follow,
